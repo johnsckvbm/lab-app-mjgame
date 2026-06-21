@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>麻将胡了 · 稳定访问指引</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f7f8fc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #2c303a;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* 深色头图区域 – 简洁导航 + hero */
+    .dark-header {
+      background: linear-gradient(145deg, #13161f 0%, #1f2535 100%);
+      color: #e9ecf5;
+      padding: 1.8rem 2rem 4rem;
+    }
+
+    .nav-inline {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+    }
+
+    .nav-brand {
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #d0d9f0;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #bcc6e0;
+      text-decoration: none;
+      font-size: 1rem;
+      border-bottom: 1px solid transparent;
+      transition: 0.2s border, 0.2s color;
+    }
+
+    .nav-links a:hover {
+      color: #f0e9b0;
+      border-bottom-color: #f0e9b0;
+    }
+
+    .hero-wrap {
+      max-width: 1120px;
+      margin: 2.5rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .hero-wrap h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+    }
+
+    .hero-wrap h1 .highlight {
+      color: #edd677;
+    }
+
+    .hero-wrap p {
+      font-size: 1.1rem;
+      color: #cbd2e9;
+      max-width: 640px;
+      margin-top: 0.3rem;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(237, 214, 119, 0.15);
+      color: #edd677;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      border: 1px solid rgba(237, 214, 119, 0.25);
+      margin-top: 0.4rem;
+      width: fit-content;
+    }
+
+    /* 浅色正文区 */
+    .content-wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 3.5rem;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 500;
+      color: #1e2230;
+      margin-bottom: 1.2rem;
+      border-left: 4px solid #c9a84c;
+      padding-left: 1.1rem;
+      letter-spacing: -0.3px;
+    }
+
+    .lead-text {
+      font-size: 1.05rem;
+      color: #3d4355;
+      margin-bottom: 2.2rem;
+      max-width: 800px;
+    }
+
+    /* 三个场景卡片 */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+      margin: 2.2rem 0 2.8rem;
+    }
+
+    .scenario-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 1.5rem 1.6rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: transform 0.15s, box-shadow 0.25s;
+      border: 1px solid #eef0f5;
+    }
+
+    .scenario-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+      border-color: #d4dae8;
+    }
+
+    .scenario-card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      color: #282e3e;
+    }
+
+    .scenario-card p {
+      font-size: 0.95rem;
+      color: #545b70;
+      line-height: 1.6;
+    }
+
+    .scenario-icon {
+      font-size: 2rem;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    /* 常见说明 – 折叠式摘要 */
+    .faq-compact {
+      margin-top: 3rem;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.8rem 2rem;
+      border: 1px solid #e6eaf2;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #edf0f6;
+      padding: 1rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 550;
+      font-size: 1.05rem;
+      color: #232837;
+      margin-bottom: 0.25rem;
+    }
+
+    .faq-a {
+      font-size: 0.95rem;
+      color: #545b70;
+      line-height: 1.6;
+    }
+
+    .faq-a a {
+      color: #9f8336;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #cfb87c;
+      transition: 0.15s;
+    }
+
+    .faq-a a:hover {
+      color: #6d5b25;
+      border-bottom-style: solid;
+    }
+
+    .inline-link {
+      color: #9f8336;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid #dacf9e;
+      transition: 0.1s;
+    }
+
+    .inline-link:hover {
+      color: #5f4f20;
+      border-bottom-color: #5f4f20;
+    }
+
+    .footnote {
+      margin-top: 3rem;
+      color: #5a6075;
+      font-size: 0.9rem;
+      border-top: 1px solid #dfe3ed;
+      padding-top: 1.8rem;
+      text-align: center;
+    }
+
+    /* 响应式细调 */
+    @media (max-width: 760px) {
+      .dark-header {
+        padding: 1.2rem 1.2rem 3rem;
+      }
+
+      .nav-inline {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+
+      .hero-wrap h1 {
+        font-size: 1.8rem;
+      }
+
+      .content-wrapper {
+        padding: 1.8rem 1.2rem 2.8rem;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+      }
+
+      .scenario-grid {
+        gap: 1.2rem;
+      }
+
+      .faq-compact {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-wrap h1 {
+        font-size: 1.6rem;
+      }
+
+      .hero-wrap p {
+        font-size: 1rem;
+      }
+
+      .nav-links a {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图 + 导航 -->
+  <header class="dark-header">
+    <div class="nav-inline">
+      <span class="nav-brand">📌 牌局指引</span>
+      <div class="nav-links">
+        <a href="#intro">首页</a>
+        <a href="#scenarios">场景</a>
+        <a href="#faq">常见说明</a>
+      </div>
+    </div>
+    <div class="hero-wrap">
+      <div class="hero-tag">稳定 · 轻量 · 清晰</div>
+      <h1>了解 <span class="highlight">麻将胡了</span><br>从可靠的入口出发</h1>
+      <p>一款围绕传统麻将元素展开的休闲游戏，因其规则简明、反馈直接而逐渐进入大众视野。许多玩家希望找到长期稳定、信息明确的访问方式，而非临时拼凑的路径。本页从站点结构入手，介绍它的基本面貌与常见使用情景。</p>
+    </div>
+  </header>
+
+  <!-- 浅色正文区 -->
+  <main class="content-wrapper">
+
+    <!-- 简洁介绍段落，嵌入链接 -->
+    <section id="intro">
+      <h2 class="section-title">页面定位说明</h2>
+      <p class="lead-text">
+        <strong>麻将胡了</strong> 并非一个复杂的产品，但它所依托的访问环境却时常变动。为了让初次接触或希望确认访问方式的用户获得一份稳定的参考，这里整理出三个典型的使用场景，以及一些常见问题。页面中所有指向游戏服务的入口均统一使用 <a href="https://app-mjgame.com" class="inline-link">麻将胡了</a> 这一名称，确保标识一致，避免因称呼混乱而产生误导。
+      </p>
+      <p style="margin-top: 0.6rem; color:#434b62;">
+        在后续的模块里，你会看到它如何适配不同的设备习惯，以及当遇到访问疑问时可以从哪些角度排查。所有内容保持客观，不渲染概率或收益，仅呈现站点本身的结构信息。
+      </p>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <section id="scenarios">
+      <h2 class="section-title" style="margin-top: 2rem;">三个典型使用场景</h2>
+      <div class="scenario-grid">
+        <div class="scenario-card">
+          <span class="scenario-icon">🖥️</span>
+          <h3>桌面端日常访问</h3>
+          <p>在电脑浏览器中直接输入站点地址，或通过书签保存固定链接。由于部分网络环境可能对游戏类域名做限制，建议使用主流浏览器并保持系统时间准确。若页面加载异常，可尝试清除缓存后重试。</p>
+        </div>
+        <div class="scenario-card">
+          <span class="scenario-icon">📱</span>
+          <h3>移动端快速适配</h3>
+          <p>手机浏览器访问时，界面会自动调整至竖屏阅读模式。注意部分第三方浏览器或安全软件可能拦截跳转，可手动将 <a href="https://app-mjgame.com" class="inline-link">麻将胡了</a> 加入白名单或使用系统自带浏览器。建议保持 Wi-Fi 或 4G/5G 信号稳定。</p>
+        </div>
+        <div class="scenario-card">
+          <span class="scenario-icon">🔐</span>
+          <h3>信息确认与收藏</h3>
+          <p>若从社交渠道或推荐链接看到相关介绍，建议先核实域名是否为官方页面。本站仅作为介绍页存在，不提供下载或跳转之外的任何服务。将正确的地址添加到收藏夹，可减少因搜索而误入仿冒页面的概率。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 常见说明 FAQ 摘要 -->
+    <section id="faq" class="faq-compact">
+      <h2 class="section-title" style="border-left-color: #c9a84c; margin-top: 0;">常见说明 · 摘要</h2>
+      <div class="faq-item">
+        <div class="faq-q">▸ 是否需要注册或安装额外软件？</div>
+        <div class="faq-a">通常不需要。绝大多数功能通过浏览器即可完成，不需要下载独立客户端。不过个别浏览器插件可能会影响页面交互，建议在无痕模式下测试。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">▸ 打开页面显示空白或无法连接怎么办？</div>
+        <div class="faq-a">首先检查本地网络是否正常，其次尝试更换 DNS（如 114.114.114.114）。部分区域运营商可能对游戏类域名有策略限制，可尝试使用备用线路或联系网络服务商咨询。核心地址依然是 <a href="https://app-mjgame.com">麻将胡了</a>。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">▸ 页面内容是否会频繁变更？</div>
+        <div class="faq-a">本介绍页为静态信息，仅随站点结构做必要更新。游戏服务本身的界面与规则调整属于产品运营范畴，建议定期以官方信息为准。若发现第三方声称代表官方，请务必核对域名主体。</div>
+      </div>
+    </section>
+
+    <!-- 底部 footnote -->
+    <div class="footnote">
+      <span>基于站点 <a href="https://app-mjgame.com" class="inline-link">麻将胡了</a> 的公开信息整理 · 内容仅作指引参考</span>
+    </div>
+  </main>
+
+</body>
+</html>
